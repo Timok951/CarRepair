@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,18 +50,27 @@ namespace CarRepair
         {
             try
             {
-                RepeatHistory repeatHistory = new RepeatHistory();
 
-                var order = OrdersCmbx.SelectedItem as OrderCar; ;
-                var staff = StaffCmbx.SelectedItem as Staff;
+                    var order = OrdersCmbx.SelectedItem as OrderCar; ;
+                    var staff = StaffCmbx.SelectedItem as Staff;
+                if (order != null && staff!= null)
+                {
+                    RepeatHistory repeatHistory = new RepeatHistory();
 
-                repeatHistory.ListOfRepair = ListofWork.Text;
-                repeatHistory.Staff_ID = staff.ID_Staff;
-                repeatHistory.Orders_ID = order.ID_Order;
+                    repeatHistory.ListOfRepair = ListofWork.Text;
+                    repeatHistory.Staff_ID = staff.ID_Staff;
+                    repeatHistory.Orders_ID = order.ID_Order;
 
-                context.RepeatHistories.Add(repeatHistory);
-                context.SaveChanges();
-                RepairHistoryGrid.ItemsSource = context.RepeatHistories.ToList();
+                    context.RepeatHistories.Add(repeatHistory);
+                    context.SaveChanges();
+                    RepairHistoryGrid.ItemsSource = context.RepeatHistories.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Введите все данные");
+
+                }
+
             }
             catch
             {
@@ -75,18 +85,28 @@ namespace CarRepair
             {
                 if(RepairHistoryGrid.SelectedItem != null)
                 {
-                    var selected = RepairHistoryGrid.SelectedItem as RepeatHistory;
 
                     var order = OrdersCmbx.SelectedItem as OrderCar; ;
                     var staff = StaffCmbx.SelectedItem as Staff;
 
-                    selected.ListOfRepair = ListofWork.Text;
-                    selected.Staff_ID = staff.ID_Staff;
-                    selected.Orders_ID = order.ID_Order;
+                    if (order != null && staff != null)
+                    {
+                        var selected = RepairHistoryGrid.SelectedItem as RepeatHistory;
 
 
-                    context.SaveChanges();
-                    RepairHistoryGrid.ItemsSource = context.RepeatHistories.ToList();
+                        selected.ListOfRepair = ListofWork.Text;
+                        selected.Staff_ID = staff.ID_Staff;
+                        selected.Orders_ID = order.ID_Order;
+
+
+                        context.SaveChanges();
+                        RepairHistoryGrid.ItemsSource = context.RepeatHistories.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введите все данные");
+
+                    }
                 }
 
             }

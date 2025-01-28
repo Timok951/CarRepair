@@ -50,16 +50,25 @@ namespace CarRepair
                 var qualification = Qualification.SelectedItem as Qualification;
 
                 Staff staff = new Staff();
-                staff.SurnameStaff = Surname.Text;
-                staff.NameSaff = Name.Text;
-                staff.PatronymicStaff = Patronimic.Text;
-                staff.Role_ID = role.ID_Role;
-                staff.Role_ID = credentials.ID_UserCredentials;
-                staff.Qualification_ID = qualification.ID_Qualification;
+                if (role != null && credentials != null & qualification !=null)
+                {
+                    staff.SurnameStaff = Surname.Text;
+                    staff.NameSaff = Name.Text;
+                    staff.PatronymicStaff = Patronimic.Text;
+                    staff.Role_ID = role.ID_Role;
+                    staff.Role_ID = credentials.ID_UserCredentials;
+                    staff.Qualification_ID = qualification.ID_Qualification;
 
-                context.Staffs.Add(staff);
-                context.SaveChanges();
-                WorkersGrid.DataContext = context.Staffs.ToList();
+                    context.Staffs.Add(staff);
+                    context.SaveChanges();
+                    WorkersGrid.DataContext = context.Staffs.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Введены не все данные");
+
+                }
+
 
             }
             catch {
@@ -103,16 +112,23 @@ namespace CarRepair
                     var credentials = Credentials.SelectedItem as UserCredential;
                     var qualification = Qualification.SelectedItem as Qualification;
 
-                    selected.SurnameStaff = Surname.Text;
-                    selected.NameSaff = Name.Text;
-                    selected.PatronymicStaff = Patronimic.Text;
-                    selected.Role_ID = role.ID_Role;
-                    selected.Role_ID = credentials.ID_UserCredentials;
-                    selected.Qualification_ID = qualification.ID_Qualification;
+                    if (role != null && credentials != null & qualification != null)
+                    {
+                        selected.SurnameStaff = Surname.Text;
+                        selected.NameSaff = Name.Text;
+                        selected.PatronymicStaff = Patronimic.Text;
+                        selected.Role_ID = role.ID_Role;
+                        selected.Role_ID = credentials.ID_UserCredentials;
+                        selected.Qualification_ID = qualification.ID_Qualification;
 
-                    context.SaveChanges();
-                    WorkersGrid.DataContext = context.Staffs.ToList();
+                        context.SaveChanges();
+                        WorkersGrid.DataContext = context.Staffs.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Введены не все данные");
 
+                    }
                 }
 
             }

@@ -40,17 +40,23 @@ namespace CarRepair
                 STO sto = new STO();
                 var workload = Workload.SelectedItem as WorkloadCar;
 
-                sto.AddressSTO = AddresSTO.Text;
-                sto.ScheduleSTO = ScheldueSto.Text;
-                sto.AmountPlaces = Convert.ToInt32(AmountOfPlaces.Text);
-                sto.PhoneNumber = PhoneNumber.Text;
-                sto.ProfitSTO = Convert.ToDecimal(ProfitSTO.Text);
-                sto.Workload_ID = workload.ID_Workload;
+                if (workload != null)
+                {
+                    sto.AddressSTO = AddresSTO.Text;
+                    sto.ScheduleSTO = ScheldueSto.Text;
+                    sto.AmountPlaces = Convert.ToInt32(AmountOfPlaces.Text);
+                    sto.PhoneNumber = PhoneNumber.Text;
+                    sto.ProfitSTO = Convert.ToDecimal(ProfitSTO.Text);
+                    sto.Workload_ID = workload.ID_Workload;
 
-                context.STOes.Add(sto);
-                context.SaveChanges();
-                STOgrid.ItemsSource = context.STOes.ToList();
-
+                    context.STOes.Add(sto);
+                    context.SaveChanges();
+                    STOgrid.ItemsSource = context.STOes.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка добавления данных, заполните все поля");
+                }
             }
             catch
             {
@@ -107,22 +113,29 @@ namespace CarRepair
                     var selected = STOgrid.SelectedItem as STO;
 
                     var workload = Workload.SelectedItem as WorkloadCar;
+                    if (workload != null)
+                    {
+                        selected.AddressSTO = AddresSTO.Text;
+                        selected.ScheduleSTO = ScheldueSto.Text;
+                        selected.AmountPlaces = Convert.ToInt32(AmountOfPlaces.Text);
+                        selected.PhoneNumber = PhoneNumber.Text;
+                        selected.ProfitSTO = Convert.ToDecimal(ProfitSTO.Text);
+                        selected.Workload_ID = workload.ID_Workload;
 
-                    selected.AddressSTO = AddresSTO.Text;
-                    selected.ScheduleSTO = ScheldueSto.Text;
-                    selected.AmountPlaces = Convert.ToInt32(AmountOfPlaces.Text);
-                    selected.PhoneNumber = PhoneNumber.Text;
-                    selected.ProfitSTO = Convert.ToDecimal(ProfitSTO.Text);
-                    selected.Workload_ID = workload.ID_Workload;
+                        context.SaveChanges();
+                        STOgrid.ItemsSource = context.STOes.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка изменения введите все данные");
 
-                    context.SaveChanges();
-                    STOgrid.ItemsSource = context.STOes.ToList();
+                    }
                 }
             }
 
             catch
             {
-                MessageBox.Show("Ошиьбка изменения");
+                MessageBox.Show("Ошибка изменения");
             }
         }
 

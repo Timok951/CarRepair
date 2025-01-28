@@ -68,20 +68,30 @@ namespace CarRepair
         {
             try
             {
+
                 var mark = MarkBox.SelectedItem as Mark;
                 var model = ModelBox.SelectedItem as ModelCar;
                 var client = ClientBox.SelectedItem as Client;
 
-                Car car = new Car();
+                if (client != null && model != null && client != null)
+                {
+                    Car car = new Car();
 
-                car.Mark_ID = mark.ID_Mark;
-                car.ModelCar_ID = model.ID_Model;
-                car.Client_ID = client.ID_Client;
-                car.NumberCar = NumberCar.Text;
+                    car.Mark_ID = mark.ID_Mark;
+                    car.ModelCar_ID = model.ID_Model;
+                    car.Client_ID = client.ID_Client;
+                    car.NumberCar = NumberCar.Text;
 
-                context.Cars.Add(car);
-                context.SaveChanges();
-                CarGrid.ItemsSource = context.Cars.ToList();
+                    context.Cars.Add(car);
+                    context.SaveChanges();
+                    CarGrid.ItemsSource = context.Cars.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все данные");
+
+                }
+
 
             }
             catch {

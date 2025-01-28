@@ -86,19 +86,29 @@ namespace CarRepair
                 var sparepart = SparePartsCmbx.SelectedItem as SparePart;
                 var sto = StoCmbx.SelectedItem as STO;
                 var carnum = CarCmbx.SelectedItem as Car;
+                
+                if (status != null && sparepart != null && sto != null && carnum != null)
+                {
+                    OrderCar car = new OrderCar();
 
-                OrderCar car = new OrderCar();
-                car.Status_ID = status.ID_Status;
-                car.SpareParts_ID = sparepart.ID_SpareParts;
-                car.Car_ID = carnum.ID_Car;
-                car.STO_ID = sto.ID_STO;
-                car.ListOfWorks = WorkBox.Text;
-                car.TotalPrice = Convert.ToDecimal(CostBox.Text);
-                car.DateRequest = DatePick.Text;
+                    car.Status_ID = status.ID_Status;
+                    car.SpareParts_ID = sparepart.ID_SpareParts;
+                    car.Car_ID = carnum.ID_Car;
+                    car.STO_ID = sto.ID_STO;
+                    car.ListOfWorks = WorkBox.Text;
+                    car.TotalPrice = Convert.ToDecimal(CostBox.Text);
+                    car.DateRequest = DatePick.Text;
 
-                context.OrderCars.Add(car);
-                context.SaveChanges();
-                OrderGrid.ItemsSource = context.OrderCars.ToList();
+                    context.OrderCars.Add(car);
+                    context.SaveChanges();
+                    OrderGrid.ItemsSource = context.OrderCars.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все данные");
+
+                }
+
 
             }
             catch {

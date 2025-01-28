@@ -42,14 +42,22 @@ namespace CarRepair
             {
                 var staff = StaffCmbx.SelectedItem as Staff;
                 var order = OrdersCmbx.SelectedItem as OrderCar;
-                ScheduleStaff scheduleStaff = new ScheduleStaff();
-                scheduleStaff.Staff_ID = staff.ID_Staff;
-                scheduleStaff.Order_ID = order.ID_Order;
+                if (staff != null && order != null)
+                {
+                    ScheduleStaff scheduleStaff = new ScheduleStaff();
+                    scheduleStaff.Staff_ID = staff.ID_Staff;
+                    scheduleStaff.Order_ID = order.ID_Order;
 
 
-                context.ScheduleStaffs.Add(scheduleStaff);
-                context.SaveChanges();
-                StaffSchedule.ItemsSource = context.ScheduleStaffs.ToList();
+                    context.ScheduleStaffs.Add(scheduleStaff);
+                    context.SaveChanges();
+                    StaffSchedule.ItemsSource = context.ScheduleStaffs.ToList();
+                }
+                else
+                {
+                    MessageBox.Show("Ошибка Добавления, заполните все данные");
+                }
+
             }
             catch {
 
@@ -71,12 +79,22 @@ namespace CarRepair
                     var staff = StaffCmbx.SelectedItem as Staff;
                     var order = OrdersCmbx.SelectedItem as OrderCar;
 
-                    selected.Staff_ID = staff.ID_Staff;
-                    selected.Order_ID = order.ID_Order;
 
-                    context.SaveChanges();
-                    StaffSchedule.ItemsSource = context.ScheduleStaffs.ToList();
 
+                    if (staff != null && order != null)
+                    {
+
+                        selected.Staff_ID = staff.ID_Staff;
+                        selected.Order_ID = order.ID_Order;
+
+                        context.SaveChanges();
+                        StaffSchedule.ItemsSource = context.ScheduleStaffs.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка Добавления, заполните все данные");
+
+                    }
                 }
             }
 
