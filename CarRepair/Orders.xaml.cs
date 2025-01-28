@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,49 @@ namespace CarRepair
 
         BasicButtons basicButtons = new BasicButtons();
 
+
+        private string GenerateReceipt(OrderCar order)
+        {
+            var sparePart = context.SpareParts.Find(order.SpareParts_ID);
+            var status = context.StatusCars.Find(order.Status_ID);
+            var sto = context.STOes.Find(order.STO_ID);
+            var car = context.Cars.Find(order.Car_ID);
+
+            var receipt = new Receipt
+            {
+                CarNumber = car?.NumberCar, // Предполагается, что у вас есть свойство Number в классе Car
+                SparePartName = sparePart?.NameSparePart,
+                Status = status?.NameStatus, // Предполагается, что у вас есть свойство NameStatus в классе StatusCar
+                STOName = sto?.AddressSTO, // Предполагается, что у вас есть свойство NameSTO в классе STO
+                WorkDescription = order.ListOfWorks,
+                TotalPrice = order.TotalPrice,
+                DateRequest = order.DateRequest
+            };
+
+            // Форматируем чек в строку
+            return $"Чек\n" +
+                   $"Номер автомобиля: {receipt.CarNumber}\n" +
+                   $"Деталь: {receipt.SparePartName}\n" +
+                   $"Статус: {receipt.Status}\n" +
+                   $"СТО: {receipt.STOName}\n" +
+                   $"Описание работ: {receipt.WorkDescription}\n" +
+                   $"Итоговая цена: {receipt.TotalPrice} руб.\n" +
+                   $"Дата запроса: {receipt.DateRequest}";
+        }
+        private void SaveReceiptToFile(string receiptText)
+        {
+
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string fileName = $"Чек_{DateTime.Now.ToString("yyyyMMdd_HHmmss")}.txt"; 
+            string filePath = System.IO.Path.Combine(desktopPath, fileName);
+
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine(receiptText);
+            }
+
+            MessageBox.Show($"Чек сохранен: {filePath}", "Сохранение чека", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
         private void CostBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !IsTextAllowed(e.Text);
@@ -102,6 +146,10 @@ namespace CarRepair
                     context.OrderCars.Add(car);
                     context.SaveChanges();
                     OrderGrid.ItemsSource = context.OrderCars.ToList();
+
+                    var receiptText = GenerateReceipt(car);
+                    MessageBox.Show(receiptText, "Чек", MessageBoxButton.OK, MessageBoxImage.Information);
+                    SaveReceiptToFile(receiptText);
                 }
                 else
                 {

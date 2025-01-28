@@ -25,24 +25,75 @@ namespace CarRepair
     public partial class Reports : Window
     {
 
-        private void LoadSpareParts()
+        public class SparePartReport
         {
-            using (var context = new CarRepairEntities5())
-            {
-                var spareParts = context.SpareParts
-                    .Select(s => new
-                    {
-                        s.ID_SpareParts,
-                        s.NameSparePart,
-                        s.QuantityInStock,
-                        s.PriceSparePart,
-                        OrdersCount = s.OrderCars.Count() 
-                    })
-                    .ToList();
+            public string Description { get; set; }
+        }
 
-                PopularDetailsGrid.ItemsSource = spareParts;
+        private void LoadSparePartsWarnings()
+        {
+            var messages = _sparePartsService.CheckSparePartsStock();
+            foreach (var message in messages)
+            {
+                
+               MessageBox.Show(message); 
             }
         }
+
+        private void LoadSpareParts()
+        {
+            var mostPopularWork = context.OrderCars
+                    .GroupBy(o => o.ListOfWorks)
+                    .Select(g => new
+                    {
+                        Work = g.Key,
+                        Count = g.Count()
+                    })
+                    .OrderByDescending(g => g.Count)
+                    .FirstOrDefault();
+
+            var mostUsedSparePart = context.OrderCars
+                .GroupBy(o => o.SpareParts_ID)
+                .Select(g => new
+                {
+                    SparePartId = g.Key,
+                    Count = g.Count()
+                })
+                .OrderByDescending(g => g.Count)
+                .FirstOrDefault();
+
+            string sparePartName = null;
+            if (mostUsedSparePart != null)
+            {
+                sparePartName = context.SpareParts
+                    .Where(sp => sp.ID_SpareParts == mostUsedSparePart.SparePartId)
+                    .Select(sp => sp.NameSparePart)
+                    .FirstOrDefault();
+            }
+
+            var results = new List<SparePartReport>();
+
+            if (mostPopularWork != null)
+            {
+                results.Add(new SparePartReport { Description = $"Самая популярная работа: {mostPopularWork.Work} (Количество: {mostPopularWork.Count})" });
+            }
+            else
+            {
+                results.Add(new SparePartReport { Description = "Нет популярных работ." });
+            }
+
+            if (!string.IsNullOrEmpty(sparePartName))
+            {
+                results.Add(new SparePartReport { Description = $"Самая используемая деталь: {sparePartName} (Количество использований: {mostUsedSparePart.Count})" });
+            }
+            else
+            {
+                results.Add(new SparePartReport { Description = "Нет используемых деталей." });
+            }
+
+            PopularDetailsGrid.ItemsSource = results;
+        }
+
 
 
 
@@ -50,12 +101,15 @@ namespace CarRepair
 
         private CarRepairEntities5 context = new CarRepairEntities5();
         private readonly ReportService _reportService;
+        private readonly SparePartsService _sparePartsService;
         public Reports()
         {
             InitializeComponent();
-            _reportService = new ReportService(new CarRepairEntities5());
+            _reportService = new ReportService(context);             
             LoadData();
             LoadSpareParts();
+            _sparePartsService = new SparePartsService(context);
+            LoadSparePartsWarnings();
         }
 
         private void LoadData()
@@ -71,6 +125,7 @@ namespace CarRepair
         {
             int role = GlobalVariables.RoleUser;
             Window newwindow = basicButtons.Exit(role);
+
             newwindow.Show();
             this.Close();
         }
@@ -88,7 +143,7 @@ namespace CarRepair
                 foreach (var item in reportData)
                 {
                     string line = $"Адрес: {item.Address}, Общая прибыль: {item.TotalProfit:C}, Количество мест: {item.TotalPlaces}";
-                    page.Canvas.DrawString(line, new PdfTrueTypeFont(new Font("Arial", 20f), true), PdfBrushes.Red, new PointF(10, 15)); yPosition += 20; // Смещение для следующей строки
+                    page.Canvas.DrawString(line, new PdfTrueTypeFont(new Font("Arial", 20f), true), PdfBrushes.Black, new PointF(10, yPosition)); yPosition += 20; // Смещение для следующей строки
                 }
 
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -105,14 +160,25 @@ namespace CarRepair
             {
                 var page = document.Pages.Add();
 
-                var spareParts = context.SpareParts;
 
                 float yPosition = 50;
+
+                var spareParts = context.SpareParts
+                    .Select(s => new
+                    {
+                        s.ID_SpareParts,
+                        s.NameSparePart,
+                        s.QuantityInStock,
+                        s.ArticleSparePart
+                    })
+                    .ToList();
 
                 foreach (var item in spareParts)
                 {
                     string line = $"Деталь: {item.NameSparePart}, Остаток: {item.QuantityInStock}, Артикул: {item.ArticleSparePart}";
-                    page.Canvas.DrawString(line, new PdfTrueTypeFont(new Font("Arial", 20f), true), PdfBrushes.Red, new PointF(10, 15)); yPosition += 20; // Смещение для следующей строки
+                    page.Canvas.DrawString(line, new PdfTrueTypeFont(new Font("Arial", 20f), true), PdfBrushes.Black, new PointF(10, yPosition) );
+                    yPosition += 20;
+                    // Смещение для следующей строки
                 }
 
                 string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
@@ -125,50 +191,75 @@ namespace CarRepair
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Создаем новый PDF документ
-            using (var document = new Spire.Pdf.PdfDocument())
+            using (var context = new CarRepairEntities5())
             {
-                // Добавляем страницу
-                var page = document.Pages.Add();
-
-                // Устанавливаем шрифт
-                var font = new PdfTrueTypeFont(new Font("Arial", 20f), true);
-
-                // Устанавливаем начальную позицию для текста
-                float yPosition = 50;
-
-                // Заголовок
-                page.Canvas.DrawString("Отчет по деталям", font, PdfBrushes.Black, new PointF(10, yPosition));
-                yPosition += 30; // Смещение для следующей строки
-
-                // Получаем список запасных частей
-                using (var context = new CarRepairEntities5())
-                {
-                    var spareParts = context.SpareParts
-                        .Select(s => new
-                        {
-                            s.ID_SpareParts,
-                            s.NameSparePart,
-                            s.QuantityInStock,
-                            s.ArticleSparePart
-                        })
-                        .ToList();
-
-                    // Перебираем запасные части и добавляем их в PDF
-                    foreach (var item in spareParts)
+                // Определяем самую популярную работу
+                var mostPopularWork = context.OrderCars
+                    .GroupBy(o => o.ListOfWorks)
+                    .Select(g => new
                     {
-                        string line = $"Деталь: {item.NameSparePart}";
-                        page.Canvas.DrawString(line, font, PdfBrushes.Black, new PointF(10, yPosition));
+                        Work = g.Key,
+                        Count = g.Count()
+                    })
+                    .OrderByDescending(g => g.Count)
+                    .FirstOrDefault();
+
+                // Определяем самую используемую деталь
+                var mostUsedSparePart = context.OrderCars
+                    .GroupBy(o => o.SpareParts_ID)
+                    .Select(g => new
+                    {
+                        SparePartId = g.Key,
+                        Count = g.Count()
+                    })
+                    .OrderByDescending(g => g.Count)
+                    .FirstOrDefault();
+
+                // Получаем название самой используемой детали
+                var sparePartName = context.SpareParts
+                    .Where(sp => sp.ID_SpareParts == mostUsedSparePart.SparePartId)
+                    .Select(sp => sp.NameSparePart)
+                    .FirstOrDefault();
+
+                // Создаем новый PDF документ
+                using (var document = new Spire.Pdf.PdfDocument())
+                {
+                    // Добавляем страницу
+                    var page = document.Pages.Add();
+
+                    // Устанавливаем шрифт
+                    var font = new PdfTrueTypeFont(new Font("Arial", 20f), true);
+
+                    // Устанавливаем начальную позицию для текста
+                    float yPosition = 50;
+
+                    // Заголовок
+                    page.Canvas.DrawString("Отчет по деталям", font, PdfBrushes.Black, new PointF(10, yPosition));
+                    yPosition += 30; // Смещение для следующей строки
+
+                    // Добавляем самую популярную работу
+                    if (mostPopularWork != null)
+                    {
+                        string workLine = $"Самая популярная работа: {mostPopularWork.Work} (Количество: {mostPopularWork.Count})";
+                        page.Canvas.DrawString(workLine, font, PdfBrushes.Black, new PointF(10, yPosition));
                         yPosition += 25; // Смещение для следующей строки
                     }
+
+                    // Добавляем самую используемую деталь
+                    if (mostUsedSparePart != null && sparePartName != null)
+                    {
+                        string sparePartLine = $"Самая используемая деталь: {sparePartName} )";
+                        page.Canvas.DrawString(sparePartLine, font, PdfBrushes.Black, new PointF(10, yPosition));
+                        yPosition += 25; // Смещение для следующей строки
+                    }
+
+                    string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    string filePath = System.IO.Path.Combine(desktopPath, "Отчет_по_популярные_датали_работы.pdf");
+
+                    document.SaveToFile(filePath);
                 }
-
-                string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                string filePath = System.IO.Path.Combine(desktopPath, "Отчет_по_используемым_деталям.pdf");
-
-                document.SaveToFile(filePath);
             }
 
-                    }
+        }
     }
 }

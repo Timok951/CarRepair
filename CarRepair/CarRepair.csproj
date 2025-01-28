@@ -145,6 +145,7 @@
     <Compile Include="Qualification.cs">
       <DependentUpon>CarRepair.tt</DependentUpon>
     </Compile>
+    <Compile Include="Recepiet.cs" />
     <Compile Include="RepairHistory.xaml.cs">
       <DependentUpon>RepairHistory.xaml</DependentUpon>
     </Compile>
@@ -170,6 +171,7 @@
     <Compile Include="SparePart.cs">
       <DependentUpon>CarRepair.tt</DependentUpon>
     </Compile>
+    <Compile Include="SparePartService.cs" />
     <Compile Include="Staff.cs">
       <DependentUpon>CarRepair.tt</DependentUpon>
     </Compile>

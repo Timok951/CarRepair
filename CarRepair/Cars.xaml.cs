@@ -113,16 +113,22 @@ namespace CarRepair
                     var mark = MarkBox.SelectedItem as Mark;
                     var model = ModelBox.SelectedItem as ModelCar;
                     var client = ClientBox.SelectedItem as Client;
+                    if (client != null && model != null && client != null)
+                    {
+                        selected.Mark_ID = mark.ID_Mark;
+                        selected.ModelCar_ID = model.ID_Model;
+                        selected.Client_ID = client.ID_Client;
+                        selected.NumberCar = NumberCar.Text;
 
-                    selected.Mark_ID = mark.ID_Mark;
-                    selected.ModelCar_ID = model.ID_Model;
-                    selected.Client_ID = client.ID_Client;
-                    selected.NumberCar = NumberCar.Text;
+                        context.SaveChanges();
+                        CarGrid.ItemsSource = context.Cars.ToList();
 
-                    context.SaveChanges();
-                    CarGrid.ItemsSource = context.Cars.ToList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка добавления");
 
-
+                    }
 
                 }
             }
