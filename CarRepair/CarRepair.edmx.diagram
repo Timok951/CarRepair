@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77f7b694cc7d4c5dbe5302105e93a9e7" Name="Diagram1">
+        <EntityTypeShape EntityType="CarRepairModel.Car" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.Client" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.Mark" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.ModelCar" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.OrderCar" Width="1.5" PointX="7.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.Qualification" Width="1.5" PointX="5.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.RepeatHistory" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.RoleStaff" Width="1.5" PointX="5.25" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.ScheduleStaff" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.SparePart" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.Staff" Width="1.5" PointX="7.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.StatusCar" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.STO" Width="1.5" PointX="5.25" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.TypeClient" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.UserCredential" Width="1.5" PointX="5.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarRepairModel.WorkloadCar" Width="1.5" PointX="3" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="CarRepairModel.FK__Car__Client_ID__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Car__Mark_ID__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Car__ModelCar_ID__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__OrderCar__Car_ID__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Client__TypeClie__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__OrderCar__SpareP__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__OrderCar__Status__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__OrderCar__STO_ID__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__RepeatHis__Order__778AC167" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__ScheduleS__Order__73BA3083" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Staff__Qualifica__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__RepeatHis__Staff__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Staff__Role_ID__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__ScheduleS__Staff__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__Staff__UserCrede__6FE99F9F" ManuallyRouted="false" />
+        <AssociationConnector Association="CarRepairModel.FK__STO__Workload_ID__4BAC3F29" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

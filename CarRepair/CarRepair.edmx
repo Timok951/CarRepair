@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище CarRepairModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID_Car" />
+          </Key>
+          <Property Name="ID_Car" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_ID" Type="int" Nullable="false" />
+          <Property Name="ModelCar_ID" Type="int" Nullable="false" />
+          <Property Name="Mark_ID" Type="int" Nullable="false" />
+          <Property Name="NumberCar" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID_Client" />
+          </Key>
+          <Property Name="ID_Client" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameClient" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NameClient" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PatronymiClient" Type="varchar" MaxLength="30" />
+          <Property Name="TypeClient_ID" Type="int" Nullable="false" />
+          <Property Name="NameCompany" Type="varchar" MaxLength="30" />
+          <Property Name="AddressCompany" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="ID_Mark" />
+          </Key>
+          <Property Name="ID_Mark" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameMark" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="ModelCar">
+          <Key>
+            <PropertyRef Name="ID_Model" />
+          </Key>
+          <Property Name="ID_Model" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameModel" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderCar">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status_ID" Type="int" Nullable="false" />
+          <Property Name="ListOfWorks" Type="text" Nullable="false" />
+          <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SpareParts_ID" Type="int" Nullable="false" />
+          <Property Name="DateRequest" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="STO_ID" Type="int" Nullable="false" />
+          <Property Name="Car_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="ID_Qualification" />
+          </Key>
+          <Property Name="ID_Qualification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameQualification" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepeatHistory">
+          <Key>
+            <PropertyRef Name="ID_RepairHistory" />
+          </Key>
+          <Property Name="ID_RepairHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Orders_ID" Type="int" Nullable="false" />
+          <Property Name="ListOfRepair" Type="text" />
+          <Property Name="Staff_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="RoleStaff">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameRole" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScheduleStaff">
+          <Key>
+            <PropertyRef Name="ID_ScheduleStaff" />
+          </Key>
+          <Property Name="ID_ScheduleStaff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_ID" Type="int" />
+          <Property Name="Staff_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpareParts">
+          <Key>
+            <PropertyRef Name="ID_SpareParts" />
+          </Key>
+          <Property Name="ID_SpareParts" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameSparePart" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ArticleSparePart" Type="int" Nullable="false" />
+          <Property Name="QuantityInStock" Type="int" Nullable="false" />
+          <Property Name="PriceSparePart" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SurnameStaff" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="NameSaff" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PatronymicStaff" Type="varchar" MaxLength="30" />
+          <Property Name="Role_ID" Type="int" />
+          <Property Name="UserCredentials_ID" Type="int" Nullable="false" />
+          <Property Name="Qualification_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusCar">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameStatus" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="STO">
+          <Key>
+            <PropertyRef Name="ID_STO" />
+          </Key>
+          <Property Name="ID_STO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressSTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ScheduleSTO" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="AmountPlaces" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="ProfitSTO" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Workload_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TypeClient">
+          <Key>
+            <PropertyRef Name="ID_TypeClient" />
+          </Key>
+          <Property Name="ID_TypeClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameTypeClient" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCredentials">
+          <Key>
+            <PropertyRef Name="ID_UserCredentials" />
+          </Key>
+          <Property Name="ID_UserCredentials" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginUser" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PasswordUser" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkloadCar">
+          <Key>
+            <PropertyRef Name="ID_Workload" />
+          </Key>
+          <Property Name="ID_Workload" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameWorkload" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Car__Client_ID__5AEE82B9">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID_Client" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__Mark_ID__5CD6CB2B">
+          <End Role="Mark" Type="Self.Mark" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mark">
+              <PropertyRef Name="ID_Mark" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="Mark_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__ModelCar_ID__5BE2A6F2">
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelCar">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ModelCar_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__TypeClie__5441852A">
+          <End Role="TypeClient" Type="Self.TypeClient" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeClient">
+              <PropertyRef Name="ID_TypeClient" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TypeClient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__Car_ID__6477ECF3">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID_Car" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="Car_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__SpareP__628FA481">
+          <End Role="SpareParts" Type="Self.SpareParts" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareParts">
+              <PropertyRef Name="ID_SpareParts" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="SpareParts_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__Status__619B8048">
+          <End Role="StatusCar" Type="Self.StatusCar" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCar">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__STO_ID__6383C8BA">
+          <End Role="STO" Type="Self.STO" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STO">
+              <PropertyRef Name="ID_STO" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="STO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepeatHis__Order__778AC167">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="1" />
+          <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="RepeatHistory">
+              <PropertyRef Name="Orders_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepeatHis__Staff__787EE5A0">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="RepeatHistory">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ScheduleS__Order__73BA3083">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
+          <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="ScheduleStaff">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ScheduleS__Staff__74AE54BC">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="ScheduleStaff">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Qualifica__70DDC3D8">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="ID_Qualification" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Qualification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Role_ID__6EF57B66">
+          <End Role="RoleStaff" Type="Self.RoleStaff" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleStaff">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__UserCrede__6FE99F9F">
+          <End Role="UserCredentials" Type="Self.UserCredentials" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCredentials">
+              <PropertyRef Name="ID_UserCredentials" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="UserCredentials_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STO__Workload_ID__4BAC3F29">
+          <End Role="WorkloadCar" Type="Self.WorkloadCar" Multiplicity="1" />
+          <End Role="STO" Type="Self.STO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkloadCar">
+              <PropertyRef Name="ID_Workload" />
+            </Principal>
+            <Dependent Role="STO">
+              <PropertyRef Name="Workload_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище CarRepairModelContainer">
+          <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mark" EntityType="Self.Mark" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ModelCar" EntityType="Self.ModelCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderCar" EntityType="Self.OrderCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepeatHistory" EntityType="Self.RepeatHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleStaff" EntityType="Self.RoleStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ScheduleStaff" EntityType="Self.ScheduleStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpareParts" EntityType="Self.SpareParts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusCar" EntityType="Self.StatusCar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="STO" EntityType="Self.STO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeClient" EntityType="Self.TypeClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCredentials" EntityType="Self.UserCredentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkloadCar" EntityType="Self.WorkloadCar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Car__Client_ID__5AEE82B9" Association="Self.FK__Car__Client_ID__5AEE82B9">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__Mark_ID__5CD6CB2B" Association="Self.FK__Car__Mark_ID__5CD6CB2B">
+            <End Role="Mark" EntitySet="Mark" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__ModelCar_ID__5BE2A6F2" Association="Self.FK__Car__ModelCar_ID__5BE2A6F2">
+            <End Role="ModelCar" EntitySet="ModelCar" />
+            <End Role="Car" EntitySet="Car" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__TypeClie__5441852A" Association="Self.FK__Client__TypeClie__5441852A">
+            <End Role="TypeClient" EntitySet="TypeClient" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__Car_ID__6477ECF3" Association="Self.FK__OrderCar__Car_ID__6477ECF3">
+            <End Role="Car" EntitySet="Car" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__SpareP__628FA481" Association="Self.FK__OrderCar__SpareP__628FA481">
+            <End Role="SpareParts" EntitySet="SpareParts" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__Status__619B8048" Association="Self.FK__OrderCar__Status__619B8048">
+            <End Role="StatusCar" EntitySet="StatusCar" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__STO_ID__6383C8BA" Association="Self.FK__OrderCar__STO_ID__6383C8BA">
+            <End Role="STO" EntitySet="STO" />
+            <End Role="OrderCar" EntitySet="OrderCar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepeatHis__Order__778AC167" Association="Self.FK__RepeatHis__Order__778AC167">
+            <End Role="OrderCar" EntitySet="OrderCar" />
+            <End Role="RepeatHistory" EntitySet="RepeatHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepeatHis__Staff__787EE5A0" Association="Self.FK__RepeatHis__Staff__787EE5A0">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="RepeatHistory" EntitySet="RepeatHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ScheduleS__Order__73BA3083" Association="Self.FK__ScheduleS__Order__73BA3083">
+            <End Role="OrderCar" EntitySet="OrderCar" />
+            <End Role="ScheduleStaff" EntitySet="ScheduleStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ScheduleS__Staff__74AE54BC" Association="Self.FK__ScheduleS__Staff__74AE54BC">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="ScheduleStaff" EntitySet="ScheduleStaff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Qualifica__70DDC3D8" Association="Self.FK__Staff__Qualifica__70DDC3D8">
+            <End Role="Qualification" EntitySet="Qualification" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Role_ID__6EF57B66" Association="Self.FK__Staff__Role_ID__6EF57B66">
+            <End Role="RoleStaff" EntitySet="RoleStaff" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__UserCrede__6FE99F9F" Association="Self.FK__Staff__UserCrede__6FE99F9F">
+            <End Role="UserCredentials" EntitySet="UserCredentials" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STO__Workload_ID__4BAC3F29" Association="Self.FK__STO__Workload_ID__4BAC3F29">
+            <End Role="WorkloadCar" EntitySet="WorkloadCar" />
+            <End Role="STO" EntitySet="STO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CarRepairModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Car">
+          <Key>
+            <PropertyRef Name="ID_Car" />
+          </Key>
+          <Property Name="ID_Car" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_ID" Type="Int32" Nullable="false" />
+          <Property Name="ModelCar_ID" Type="Int32" Nullable="false" />
+          <Property Name="Mark_ID" Type="Int32" Nullable="false" />
+          <Property Name="NumberCar" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Car__Client_ID__5AEE82B9" FromRole="Car" ToRole="Client" />
+          <NavigationProperty Name="Mark" Relationship="Self.FK__Car__Mark_ID__5CD6CB2B" FromRole="Car" ToRole="Mark" />
+          <NavigationProperty Name="ModelCar" Relationship="Self.FK__Car__ModelCar_ID__5BE2A6F2" FromRole="Car" ToRole="ModelCar" />
+          <NavigationProperty Name="OrderCars" Relationship="Self.FK__OrderCar__Car_ID__6477ECF3" FromRole="Car" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ID_Client" />
+          </Key>
+          <Property Name="ID_Client" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameClient" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameClient" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PatronymiClient" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="TypeClient_ID" Type="Int32" Nullable="false" />
+          <Property Name="NameCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="AddressCompany" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__Client_ID__5AEE82B9" FromRole="Client" ToRole="Car" />
+          <NavigationProperty Name="TypeClient" Relationship="Self.FK__Client__TypeClie__5441852A" FromRole="Client" ToRole="TypeClient" />
+        </EntityType>
+        <EntityType Name="Mark">
+          <Key>
+            <PropertyRef Name="ID_Mark" />
+          </Key>
+          <Property Name="ID_Mark" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameMark" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__Mark_ID__5CD6CB2B" FromRole="Mark" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="ModelCar">
+          <Key>
+            <PropertyRef Name="ID_Model" />
+          </Key>
+          <Property Name="ID_Model" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameModel" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cars" Relationship="Self.FK__Car__ModelCar_ID__5BE2A6F2" FromRole="ModelCar" ToRole="Car" />
+        </EntityType>
+        <EntityType Name="OrderCar">
+          <Key>
+            <PropertyRef Name="ID_Order" />
+          </Key>
+          <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status_ID" Type="Int32" Nullable="false" />
+          <Property Name="ListOfWorks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="SpareParts_ID" Type="Int32" Nullable="false" />
+          <Property Name="DateRequest" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="STO_ID" Type="Int32" Nullable="false" />
+          <Property Name="Car_ID" Type="Int32" />
+          <NavigationProperty Name="Car" Relationship="Self.FK__OrderCar__Car_ID__6477ECF3" FromRole="OrderCar" ToRole="Car" />
+          <NavigationProperty Name="SparePart" Relationship="Self.FK__OrderCar__SpareP__628FA481" FromRole="OrderCar" ToRole="SpareParts" />
+          <NavigationProperty Name="StatusCar" Relationship="Self.FK__OrderCar__Status__619B8048" FromRole="OrderCar" ToRole="StatusCar" />
+          <NavigationProperty Name="STO" Relationship="Self.FK__OrderCar__STO_ID__6383C8BA" FromRole="OrderCar" ToRole="STO" />
+          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Order__778AC167" FromRole="OrderCar" ToRole="RepeatHistory" />
+          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Order__73BA3083" FromRole="OrderCar" ToRole="ScheduleStaff" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="ID_Qualification" />
+          </Key>
+          <Property Name="ID_Qualification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameQualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Qualifica__70DDC3D8" FromRole="Qualification" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="RepeatHistory">
+          <Key>
+            <PropertyRef Name="ID_RepairHistory" />
+          </Key>
+          <Property Name="ID_RepairHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Orders_ID" Type="Int32" Nullable="false" />
+          <Property Name="ListOfRepair" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Staff_ID" Type="Int32" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK__RepeatHis__Order__778AC167" FromRole="RepeatHistory" ToRole="OrderCar" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__RepeatHis__Staff__787EE5A0" FromRole="RepeatHistory" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="RoleStaff">
+          <Key>
+            <PropertyRef Name="ID_Role" />
+          </Key>
+          <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameRole" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Role_ID__6EF57B66" FromRole="RoleStaff" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="ScheduleStaff">
+          <Key>
+            <PropertyRef Name="ID_ScheduleStaff" />
+          </Key>
+          <Property Name="ID_ScheduleStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_ID" Type="Int32" />
+          <Property Name="Staff_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK__ScheduleS__Order__73BA3083" FromRole="ScheduleStaff" ToRole="OrderCar" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__ScheduleS__Staff__74AE54BC" FromRole="ScheduleStaff" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="SparePart">
+          <Key>
+            <PropertyRef Name="ID_SpareParts" />
+          </Key>
+          <Property Name="ID_SpareParts" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameSparePart" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ArticleSparePart" Type="Int32" Nullable="false" />
+          <Property Name="QuantityInStock" Type="Int32" Nullable="false" />
+          <Property Name="PriceSparePart" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderCars" Relationship="Self.FK__OrderCar__SpareP__628FA481" FromRole="SpareParts" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="ID_Staff" />
+          </Key>
+          <Property Name="ID_Staff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SurnameStaff" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NameSaff" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PatronymicStaff" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Role_ID" Type="Int32" />
+          <Property Name="UserCredentials_ID" Type="Int32" Nullable="false" />
+          <Property Name="Qualification_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Qualification" Relationship="Self.FK__Staff__Qualifica__70DDC3D8" FromRole="Staff" ToRole="Qualification" />
+          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Staff__787EE5A0" FromRole="Staff" ToRole="RepeatHistory" />
+          <NavigationProperty Name="RoleStaff" Relationship="Self.FK__Staff__Role_ID__6EF57B66" FromRole="Staff" ToRole="RoleStaff" />
+          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Staff__74AE54BC" FromRole="Staff" ToRole="ScheduleStaff" />
+          <NavigationProperty Name="UserCredential" Relationship="Self.FK__Staff__UserCrede__6FE99F9F" FromRole="Staff" ToRole="UserCredentials" />
+        </EntityType>
+        <EntityType Name="StatusCar">
+          <Key>
+            <PropertyRef Name="ID_Status" />
+          </Key>
+          <Property Name="ID_Status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameStatus" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderCars" Relationship="Self.FK__OrderCar__Status__619B8048" FromRole="StatusCar" ToRole="OrderCar" />
+        </EntityType>
+        <EntityType Name="STO">
+          <Key>
+            <PropertyRef Name="ID_STO" />
+          </Key>
+          <Property Name="ID_STO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressSTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ScheduleSTO" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AmountPlaces" Type="Int32" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProfitSTO" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Workload_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderCars" Relationship="Self.FK__OrderCar__STO_ID__6383C8BA" FromRole="STO" ToRole="OrderCar" />
+          <NavigationProperty Name="WorkloadCar" Relationship="Self.FK__STO__Workload_ID__4BAC3F29" FromRole="STO" ToRole="WorkloadCar" />
+        </EntityType>
+        <EntityType Name="TypeClient">
+          <Key>
+            <PropertyRef Name="ID_TypeClient" />
+          </Key>
+          <Property Name="ID_TypeClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameTypeClient" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Client__TypeClie__5441852A" FromRole="TypeClient" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="UserCredential">
+          <Key>
+            <PropertyRef Name="ID_UserCredentials" />
+          </Key>
+          <Property Name="ID_UserCredentials" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginUser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PasswordUser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__UserCrede__6FE99F9F" FromRole="UserCredentials" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="WorkloadCar">
+          <Key>
+            <PropertyRef Name="ID_Workload" />
+          </Key>
+          <Property Name="ID_Workload" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameWorkload" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="STOes" Relationship="Self.FK__STO__Workload_ID__4BAC3F29" FromRole="WorkloadCar" ToRole="STO" />
+        </EntityType>
+        <Association Name="FK__Car__Client_ID__5AEE82B9">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="ID_Client" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__Mark_ID__5CD6CB2B">
+          <End Role="Mark" Type="Self.Mark" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mark">
+              <PropertyRef Name="ID_Mark" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="Mark_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Car__ModelCar_ID__5BE2A6F2">
+          <End Role="ModelCar" Type="Self.ModelCar" Multiplicity="1" />
+          <End Role="Car" Type="Self.Car" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ModelCar">
+              <PropertyRef Name="ID_Model" />
+            </Principal>
+            <Dependent Role="Car">
+              <PropertyRef Name="ModelCar_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__Car_ID__6477ECF3">
+          <End Role="Car" Type="Self.Car" Multiplicity="0..1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Car">
+              <PropertyRef Name="ID_Car" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="Car_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__TypeClie__5441852A">
+          <End Role="TypeClient" Type="Self.TypeClient" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeClient">
+              <PropertyRef Name="ID_TypeClient" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="TypeClient_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__SpareP__628FA481">
+          <End Role="SpareParts" Type="Self.SparePart" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpareParts">
+              <PropertyRef Name="ID_SpareParts" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="SpareParts_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__Status__619B8048">
+          <End Role="StatusCar" Type="Self.StatusCar" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCar">
+              <PropertyRef Name="ID_Status" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="Status_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderCar__STO_ID__6383C8BA">
+          <End Role="STO" Type="Self.STO" Multiplicity="1" />
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="STO">
+              <PropertyRef Name="ID_STO" />
+            </Principal>
+            <Dependent Role="OrderCar">
+              <PropertyRef Name="STO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepeatHis__Order__778AC167">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="1" />
+          <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="RepeatHistory">
+              <PropertyRef Name="Orders_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ScheduleS__Order__73BA3083">
+          <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
+          <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderCar">
+              <PropertyRef Name="ID_Order" />
+            </Principal>
+            <Dependent Role="ScheduleStaff">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Qualifica__70DDC3D8">
+          <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Qualification">
+              <PropertyRef Name="ID_Qualification" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Qualification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RepeatHis__Staff__787EE5A0">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
+          <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="RepeatHistory">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__Role_ID__6EF57B66">
+          <End Role="RoleStaff" Type="Self.RoleStaff" Multiplicity="0..1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleStaff">
+              <PropertyRef Name="ID_Role" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="Role_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ScheduleS__Staff__74AE54BC">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="ID_Staff" />
+            </Principal>
+            <Dependent Role="ScheduleStaff">
+              <PropertyRef Name="Staff_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Staff__UserCrede__6FE99F9F">
+          <End Role="UserCredentials" Type="Self.UserCredential" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCredentials">
+              <PropertyRef Name="ID_UserCredentials" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="UserCredentials_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__STO__Workload_ID__4BAC3F29">
+          <End Role="WorkloadCar" Type="Self.WorkloadCar" Multiplicity="1" />
+          <End Role="STO" Type="Self.STO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkloadCar">
+              <PropertyRef Name="ID_Workload" />
+            </Principal>
+            <Dependent Role="STO">
+              <PropertyRef Name="Workload_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CarRepairEntities5" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cars" EntityType="Self.Car" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Marks" EntityType="Self.Mark" />
+          <EntitySet Name="ModelCars" EntityType="Self.ModelCar" />
+          <EntitySet Name="OrderCars" EntityType="Self.OrderCar" />
+          <EntitySet Name="Qualifications" EntityType="Self.Qualification" />
+          <EntitySet Name="RepeatHistories" EntityType="Self.RepeatHistory" />
+          <EntitySet Name="RoleStaffs" EntityType="Self.RoleStaff" />
+          <EntitySet Name="ScheduleStaffs" EntityType="Self.ScheduleStaff" />
+          <EntitySet Name="SpareParts" EntityType="Self.SparePart" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="StatusCars" EntityType="Self.StatusCar" />
+          <EntitySet Name="STOes" EntityType="Self.STO" />
+          <EntitySet Name="TypeClients" EntityType="Self.TypeClient" />
+          <EntitySet Name="UserCredentials" EntityType="Self.UserCredential" />
+          <EntitySet Name="WorkloadCars" EntityType="Self.WorkloadCar" />
+          <AssociationSet Name="FK__Car__Client_ID__5AEE82B9" Association="Self.FK__Car__Client_ID__5AEE82B9">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__Mark_ID__5CD6CB2B" Association="Self.FK__Car__Mark_ID__5CD6CB2B">
+            <End Role="Mark" EntitySet="Marks" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Car__ModelCar_ID__5BE2A6F2" Association="Self.FK__Car__ModelCar_ID__5BE2A6F2">
+            <End Role="ModelCar" EntitySet="ModelCars" />
+            <End Role="Car" EntitySet="Cars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__Car_ID__6477ECF3" Association="Self.FK__OrderCar__Car_ID__6477ECF3">
+            <End Role="Car" EntitySet="Cars" />
+            <End Role="OrderCar" EntitySet="OrderCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__TypeClie__5441852A" Association="Self.FK__Client__TypeClie__5441852A">
+            <End Role="TypeClient" EntitySet="TypeClients" />
+            <End Role="Client" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__SpareP__628FA481" Association="Self.FK__OrderCar__SpareP__628FA481">
+            <End Role="SpareParts" EntitySet="SpareParts" />
+            <End Role="OrderCar" EntitySet="OrderCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__Status__619B8048" Association="Self.FK__OrderCar__Status__619B8048">
+            <End Role="StatusCar" EntitySet="StatusCars" />
+            <End Role="OrderCar" EntitySet="OrderCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderCar__STO_ID__6383C8BA" Association="Self.FK__OrderCar__STO_ID__6383C8BA">
+            <End Role="STO" EntitySet="STOes" />
+            <End Role="OrderCar" EntitySet="OrderCars" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepeatHis__Order__778AC167" Association="Self.FK__RepeatHis__Order__778AC167">
+            <End Role="OrderCar" EntitySet="OrderCars" />
+            <End Role="RepeatHistory" EntitySet="RepeatHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ScheduleS__Order__73BA3083" Association="Self.FK__ScheduleS__Order__73BA3083">
+            <End Role="OrderCar" EntitySet="OrderCars" />
+            <End Role="ScheduleStaff" EntitySet="ScheduleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Qualifica__70DDC3D8" Association="Self.FK__Staff__Qualifica__70DDC3D8">
+            <End Role="Qualification" EntitySet="Qualifications" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RepeatHis__Staff__787EE5A0" Association="Self.FK__RepeatHis__Staff__787EE5A0">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="RepeatHistory" EntitySet="RepeatHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__Role_ID__6EF57B66" Association="Self.FK__Staff__Role_ID__6EF57B66">
+            <End Role="RoleStaff" EntitySet="RoleStaffs" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ScheduleS__Staff__74AE54BC" Association="Self.FK__ScheduleS__Staff__74AE54BC">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="ScheduleStaff" EntitySet="ScheduleStaffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Staff__UserCrede__6FE99F9F" Association="Self.FK__Staff__UserCrede__6FE99F9F">
+            <End Role="UserCredentials" EntitySet="UserCredentials" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__STO__Workload_ID__4BAC3F29" Association="Self.FK__STO__Workload_ID__4BAC3F29">
+            <End Role="WorkloadCar" EntitySet="WorkloadCars" />
+            <End Role="STO" EntitySet="STOes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CarRepairModelContainer" CdmEntityContainer="CarRepairEntities5">
+          <EntitySetMapping Name="Cars">
+            <EntityTypeMapping TypeName="CarRepairModel.Car">
+              <MappingFragment StoreEntitySet="Car">
+                <ScalarProperty Name="ID_Car" ColumnName="ID_Car" />
+                <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+                <ScalarProperty Name="ModelCar_ID" ColumnName="ModelCar_ID" />
+                <ScalarProperty Name="Mark_ID" ColumnName="Mark_ID" />
+                <ScalarProperty Name="NumberCar" ColumnName="NumberCar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="CarRepairModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
+                <ScalarProperty Name="SurnameClient" ColumnName="SurnameClient" />
+                <ScalarProperty Name="NameClient" ColumnName="NameClient" />
+                <ScalarProperty Name="PatronymiClient" ColumnName="PatronymiClient" />
+                <ScalarProperty Name="TypeClient_ID" ColumnName="TypeClient_ID" />
+                <ScalarProperty Name="NameCompany" ColumnName="NameCompany" />
+                <ScalarProperty Name="AddressCompany" ColumnName="AddressCompany" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marks">
+            <EntityTypeMapping TypeName="CarRepairModel.Mark">
+              <MappingFragment StoreEntitySet="Mark">
+                <ScalarProperty Name="ID_Mark" ColumnName="ID_Mark" />
+                <ScalarProperty Name="NameMark" ColumnName="NameMark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModelCars">
+            <EntityTypeMapping TypeName="CarRepairModel.ModelCar">
+              <MappingFragment StoreEntitySet="ModelCar">
+                <ScalarProperty Name="ID_Model" ColumnName="ID_Model" />
+                <ScalarProperty Name="NameModel" ColumnName="NameModel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderCars">
+            <EntityTypeMapping TypeName="CarRepairModel.OrderCar">
+              <MappingFragment StoreEntitySet="OrderCar">
+                <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
+                <ScalarProperty Name="Status_ID" ColumnName="Status_ID" />
+                <ScalarProperty Name="ListOfWorks" ColumnName="ListOfWorks" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="SpareParts_ID" ColumnName="SpareParts_ID" />
+                <ScalarProperty Name="DateRequest" ColumnName="DateRequest" />
+                <ScalarProperty Name="STO_ID" ColumnName="STO_ID" />
+                <ScalarProperty Name="Car_ID" ColumnName="Car_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qualifications">
+            <EntityTypeMapping TypeName="CarRepairModel.Qualification">
+              <MappingFragment StoreEntitySet="Qualification">
+                <ScalarProperty Name="ID_Qualification" ColumnName="ID_Qualification" />
+                <ScalarProperty Name="NameQualification" ColumnName="NameQualification" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepeatHistories">
+            <EntityTypeMapping TypeName="CarRepairModel.RepeatHistory">
+              <MappingFragment StoreEntitySet="RepeatHistory">
+                <ScalarProperty Name="ID_RepairHistory" ColumnName="ID_RepairHistory" />
+                <ScalarProperty Name="Orders_ID" ColumnName="Orders_ID" />
+                <ScalarProperty Name="ListOfRepair" ColumnName="ListOfRepair" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleStaffs">
+            <EntityTypeMapping TypeName="CarRepairModel.RoleStaff">
+              <MappingFragment StoreEntitySet="RoleStaff">
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheduleStaffs">
+            <EntityTypeMapping TypeName="CarRepairModel.ScheduleStaff">
+              <MappingFragment StoreEntitySet="ScheduleStaff">
+                <ScalarProperty Name="ID_ScheduleStaff" ColumnName="ID_ScheduleStaff" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Staff_ID" ColumnName="Staff_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpareParts">
+            <EntityTypeMapping TypeName="CarRepairModel.SparePart">
+              <MappingFragment StoreEntitySet="SpareParts">
+                <ScalarProperty Name="ID_SpareParts" ColumnName="ID_SpareParts" />
+                <ScalarProperty Name="NameSparePart" ColumnName="NameSparePart" />
+                <ScalarProperty Name="ArticleSparePart" ColumnName="ArticleSparePart" />
+                <ScalarProperty Name="QuantityInStock" ColumnName="QuantityInStock" />
+                <ScalarProperty Name="PriceSparePart" ColumnName="PriceSparePart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="CarRepairModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="ID_Staff" ColumnName="ID_Staff" />
+                <ScalarProperty Name="SurnameStaff" ColumnName="SurnameStaff" />
+                <ScalarProperty Name="NameSaff" ColumnName="NameSaff" />
+                <ScalarProperty Name="PatronymicStaff" ColumnName="PatronymicStaff" />
+                <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+                <ScalarProperty Name="UserCredentials_ID" ColumnName="UserCredentials_ID" />
+                <ScalarProperty Name="Qualification_ID" ColumnName="Qualification_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusCars">
+            <EntityTypeMapping TypeName="CarRepairModel.StatusCar">
+              <MappingFragment StoreEntitySet="StatusCar">
+                <ScalarProperty Name="ID_Status" ColumnName="ID_Status" />
+                <ScalarProperty Name="NameStatus" ColumnName="NameStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="STOes">
+            <EntityTypeMapping TypeName="CarRepairModel.STO">
+              <MappingFragment StoreEntitySet="STO">
+                <ScalarProperty Name="ID_STO" ColumnName="ID_STO" />
+                <ScalarProperty Name="AddressSTO" ColumnName="AddressSTO" />
+                <ScalarProperty Name="ScheduleSTO" ColumnName="ScheduleSTO" />
+                <ScalarProperty Name="AmountPlaces" ColumnName="AmountPlaces" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ProfitSTO" ColumnName="ProfitSTO" />
+                <ScalarProperty Name="Workload_ID" ColumnName="Workload_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeClients">
+            <EntityTypeMapping TypeName="CarRepairModel.TypeClient">
+              <MappingFragment StoreEntitySet="TypeClient">
+                <ScalarProperty Name="ID_TypeClient" ColumnName="ID_TypeClient" />
+                <ScalarProperty Name="NameTypeClient" ColumnName="NameTypeClient" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCredentials">
+            <EntityTypeMapping TypeName="CarRepairModel.UserCredential">
+              <MappingFragment StoreEntitySet="UserCredentials">
+                <ScalarProperty Name="ID_UserCredentials" ColumnName="ID_UserCredentials" />
+                <ScalarProperty Name="LoginUser" ColumnName="LoginUser" />
+                <ScalarProperty Name="PasswordUser" ColumnName="PasswordUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkloadCars">
+            <EntityTypeMapping TypeName="CarRepairModel.WorkloadCar">
+              <MappingFragment StoreEntitySet="WorkloadCar">
+                <ScalarProperty Name="ID_Workload" ColumnName="ID_Workload" />
+                <ScalarProperty Name="NameWorkload" ColumnName="NameWorkload" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
