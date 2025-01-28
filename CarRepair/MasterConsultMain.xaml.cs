@@ -26,7 +26,9 @@ namespace CarRepair
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            RepairHistory repairHistory = new RepairHistory();
+            repairHistory.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
