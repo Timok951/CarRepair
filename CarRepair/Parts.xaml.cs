@@ -70,8 +70,18 @@ namespace CarRepair
 
         public Parts()
         {
+            int role = GlobalVariables.RoleUser;
+
             InitializeComponent();
+            
             PartsGrid.ItemsSource = context.SpareParts.ToList();
+            if (role == 2 || role == 3)
+            {
+                AddBut.IsEnabled = false;
+                EditBut.IsEnabled = false;
+                RemoveBut.IsEnabled = false;
+
+            }
 
         }
 
