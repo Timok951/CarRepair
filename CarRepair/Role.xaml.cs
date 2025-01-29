@@ -20,7 +20,7 @@ namespace CarRepair
     /// </summary>
     public partial class Role : Window
     {
-        private CarRepairEntities5 context = new CarRepairEntities5();
+        private CarRepairEntities6 context = new CarRepairEntities6();
 
         BasicButtons basicButtons = new BasicButtons();
 

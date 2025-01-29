@@ -77,5 +77,12 @@ namespace CarRepair
             reports.Show();
             this.Close();
         }
+
+        private void PartsBut_Click(object sender, RoutedEventArgs e)
+        {
+            Parts part = new Parts();
+            part.Show();
+            this.Close();
+        }
     }
 }

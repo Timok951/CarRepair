@@ -21,7 +21,7 @@ namespace CarRepair
     public partial class StoWindow1 : Window
     {
         BasicButtons basicButtons = new BasicButtons();
-        private CarRepairEntities5 context = new CarRepairEntities5();
+        private CarRepairEntities6 context = new CarRepairEntities6();
 
         public StoWindow1()
         {

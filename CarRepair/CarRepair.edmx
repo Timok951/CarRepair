@@ -47,7 +47,7 @@
           </Key>
           <Property Name="ID_Order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Status_ID" Type="int" Nullable="false" />
-          <Property Name="ListOfWorks" Type="text" Nullable="false" />
+          <Property Name="ListOfWorks" Type="nvarchar(max)" />
           <Property Name="TotalPrice" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="SpareParts_ID" Type="int" Nullable="false" />
           <Property Name="DateRequest" Type="varchar" MaxLength="10" Nullable="false" />
@@ -244,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RepeatHis__Order__778AC167">
+        <Association Name="FK__RepeatHis__Order__73BA3083">
           <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="1" />
           <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -256,7 +256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RepeatHis__Staff__787EE5A0">
+        <Association Name="FK__RepeatHis__Staff__74AE54BC">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -268,7 +268,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ScheduleS__Order__73BA3083">
+        <Association Name="FK__ScheduleS__Order__6FE99F9F">
           <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
           <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -280,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ScheduleS__Staff__74AE54BC">
+        <Association Name="FK__ScheduleS__Staff__70DDC3D8">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -292,7 +292,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__Qualifica__70DDC3D8">
+        <Association Name="FK__Staff__Qualifica__6D0D32F4">
           <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -304,7 +304,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__Role_ID__6EF57B66">
+        <Association Name="FK__Staff__Role_ID__6B24EA82">
           <End Role="RoleStaff" Type="Self.RoleStaff" Multiplicity="0..1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -316,7 +316,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__UserCrede__6FE99F9F">
+        <Association Name="FK__Staff__UserCrede__6C190EBB">
           <End Role="UserCredentials" Type="Self.UserCredentials" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -389,31 +389,31 @@
             <End Role="STO" EntitySet="STO" />
             <End Role="OrderCar" EntitySet="OrderCar" />
           </AssociationSet>
-          <AssociationSet Name="FK__RepeatHis__Order__778AC167" Association="Self.FK__RepeatHis__Order__778AC167">
+          <AssociationSet Name="FK__RepeatHis__Order__73BA3083" Association="Self.FK__RepeatHis__Order__73BA3083">
             <End Role="OrderCar" EntitySet="OrderCar" />
             <End Role="RepeatHistory" EntitySet="RepeatHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__RepeatHis__Staff__787EE5A0" Association="Self.FK__RepeatHis__Staff__787EE5A0">
+          <AssociationSet Name="FK__RepeatHis__Staff__74AE54BC" Association="Self.FK__RepeatHis__Staff__74AE54BC">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="RepeatHistory" EntitySet="RepeatHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleS__Order__73BA3083" Association="Self.FK__ScheduleS__Order__73BA3083">
+          <AssociationSet Name="FK__ScheduleS__Order__6FE99F9F" Association="Self.FK__ScheduleS__Order__6FE99F9F">
             <End Role="OrderCar" EntitySet="OrderCar" />
             <End Role="ScheduleStaff" EntitySet="ScheduleStaff" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleS__Staff__74AE54BC" Association="Self.FK__ScheduleS__Staff__74AE54BC">
+          <AssociationSet Name="FK__ScheduleS__Staff__70DDC3D8" Association="Self.FK__ScheduleS__Staff__70DDC3D8">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="ScheduleStaff" EntitySet="ScheduleStaff" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__Qualifica__70DDC3D8" Association="Self.FK__Staff__Qualifica__70DDC3D8">
+          <AssociationSet Name="FK__Staff__Qualifica__6D0D32F4" Association="Self.FK__Staff__Qualifica__6D0D32F4">
             <End Role="Qualification" EntitySet="Qualification" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__Role_ID__6EF57B66" Association="Self.FK__Staff__Role_ID__6EF57B66">
+          <AssociationSet Name="FK__Staff__Role_ID__6B24EA82" Association="Self.FK__Staff__Role_ID__6B24EA82">
             <End Role="RoleStaff" EntitySet="RoleStaff" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__UserCrede__6FE99F9F" Association="Self.FK__Staff__UserCrede__6FE99F9F">
+          <AssociationSet Name="FK__Staff__UserCrede__6C190EBB" Association="Self.FK__Staff__UserCrede__6C190EBB">
             <End Role="UserCredentials" EntitySet="UserCredentials" />
             <End Role="Staff" EntitySet="Staff" />
           </AssociationSet>
@@ -477,7 +477,7 @@
           </Key>
           <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Status_ID" Type="Int32" Nullable="false" />
-          <Property Name="ListOfWorks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ListOfWorks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="SpareParts_ID" Type="Int32" Nullable="false" />
           <Property Name="DateRequest" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
@@ -487,8 +487,8 @@
           <NavigationProperty Name="SparePart" Relationship="Self.FK__OrderCar__SpareP__628FA481" FromRole="OrderCar" ToRole="SpareParts" />
           <NavigationProperty Name="StatusCar" Relationship="Self.FK__OrderCar__Status__619B8048" FromRole="OrderCar" ToRole="StatusCar" />
           <NavigationProperty Name="STO" Relationship="Self.FK__OrderCar__STO_ID__6383C8BA" FromRole="OrderCar" ToRole="STO" />
-          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Order__778AC167" FromRole="OrderCar" ToRole="RepeatHistory" />
-          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Order__73BA3083" FromRole="OrderCar" ToRole="ScheduleStaff" />
+          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Order__73BA3083" FromRole="OrderCar" ToRole="RepeatHistory" />
+          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Order__6FE99F9F" FromRole="OrderCar" ToRole="ScheduleStaff" />
         </EntityType>
         <EntityType Name="Qualification">
           <Key>
@@ -496,7 +496,7 @@
           </Key>
           <Property Name="ID_Qualification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameQualification" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Qualifica__70DDC3D8" FromRole="Qualification" ToRole="Staff" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Qualifica__6D0D32F4" FromRole="Qualification" ToRole="Staff" />
         </EntityType>
         <EntityType Name="RepeatHistory">
           <Key>
@@ -506,8 +506,8 @@
           <Property Name="Orders_ID" Type="Int32" Nullable="false" />
           <Property Name="ListOfRepair" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Staff_ID" Type="Int32" />
-          <NavigationProperty Name="OrderCar" Relationship="Self.FK__RepeatHis__Order__778AC167" FromRole="RepeatHistory" ToRole="OrderCar" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK__RepeatHis__Staff__787EE5A0" FromRole="RepeatHistory" ToRole="Staff" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK__RepeatHis__Order__73BA3083" FromRole="RepeatHistory" ToRole="OrderCar" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__RepeatHis__Staff__74AE54BC" FromRole="RepeatHistory" ToRole="Staff" />
         </EntityType>
         <EntityType Name="RoleStaff">
           <Key>
@@ -515,7 +515,7 @@
           </Key>
           <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRole" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Role_ID__6EF57B66" FromRole="RoleStaff" ToRole="Staff" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__Role_ID__6B24EA82" FromRole="RoleStaff" ToRole="Staff" />
         </EntityType>
         <EntityType Name="ScheduleStaff">
           <Key>
@@ -524,8 +524,8 @@
           <Property Name="ID_ScheduleStaff" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Order_ID" Type="Int32" />
           <Property Name="Staff_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderCar" Relationship="Self.FK__ScheduleS__Order__73BA3083" FromRole="ScheduleStaff" ToRole="OrderCar" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK__ScheduleS__Staff__74AE54BC" FromRole="ScheduleStaff" ToRole="Staff" />
+          <NavigationProperty Name="OrderCar" Relationship="Self.FK__ScheduleS__Order__6FE99F9F" FromRole="ScheduleStaff" ToRole="OrderCar" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__ScheduleS__Staff__70DDC3D8" FromRole="ScheduleStaff" ToRole="Staff" />
         </EntityType>
         <EntityType Name="SparePart">
           <Key>
@@ -549,11 +549,11 @@
           <Property Name="Role_ID" Type="Int32" />
           <Property Name="UserCredentials_ID" Type="Int32" Nullable="false" />
           <Property Name="Qualification_ID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Qualification" Relationship="Self.FK__Staff__Qualifica__70DDC3D8" FromRole="Staff" ToRole="Qualification" />
-          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Staff__787EE5A0" FromRole="Staff" ToRole="RepeatHistory" />
-          <NavigationProperty Name="RoleStaff" Relationship="Self.FK__Staff__Role_ID__6EF57B66" FromRole="Staff" ToRole="RoleStaff" />
-          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Staff__74AE54BC" FromRole="Staff" ToRole="ScheduleStaff" />
-          <NavigationProperty Name="UserCredential" Relationship="Self.FK__Staff__UserCrede__6FE99F9F" FromRole="Staff" ToRole="UserCredentials" />
+          <NavigationProperty Name="Qualification" Relationship="Self.FK__Staff__Qualifica__6D0D32F4" FromRole="Staff" ToRole="Qualification" />
+          <NavigationProperty Name="RepeatHistories" Relationship="Self.FK__RepeatHis__Staff__74AE54BC" FromRole="Staff" ToRole="RepeatHistory" />
+          <NavigationProperty Name="RoleStaff" Relationship="Self.FK__Staff__Role_ID__6B24EA82" FromRole="Staff" ToRole="RoleStaff" />
+          <NavigationProperty Name="ScheduleStaffs" Relationship="Self.FK__ScheduleS__Staff__70DDC3D8" FromRole="Staff" ToRole="ScheduleStaff" />
+          <NavigationProperty Name="UserCredential" Relationship="Self.FK__Staff__UserCrede__6C190EBB" FromRole="Staff" ToRole="UserCredentials" />
         </EntityType>
         <EntityType Name="StatusCar">
           <Key>
@@ -592,7 +592,7 @@
           <Property Name="ID_UserCredentials" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LoginUser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PasswordUser" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__UserCrede__6FE99F9F" FromRole="UserCredentials" ToRole="Staff" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK__Staff__UserCrede__6C190EBB" FromRole="UserCredentials" ToRole="Staff" />
         </EntityType>
         <EntityType Name="WorkloadCar">
           <Key>
@@ -698,7 +698,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RepeatHis__Order__778AC167">
+        <Association Name="FK__RepeatHis__Order__73BA3083">
           <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="1" />
           <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -710,7 +710,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ScheduleS__Order__73BA3083">
+        <Association Name="FK__ScheduleS__Order__6FE99F9F">
           <End Role="OrderCar" Type="Self.OrderCar" Multiplicity="0..1" />
           <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -722,7 +722,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__Qualifica__70DDC3D8">
+        <Association Name="FK__Staff__Qualifica__6D0D32F4">
           <End Role="Qualification" Type="Self.Qualification" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -734,7 +734,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RepeatHis__Staff__787EE5A0">
+        <Association Name="FK__RepeatHis__Staff__74AE54BC">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="RepeatHistory" Type="Self.RepeatHistory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -746,7 +746,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__Role_ID__6EF57B66">
+        <Association Name="FK__Staff__Role_ID__6B24EA82">
           <End Role="RoleStaff" Type="Self.RoleStaff" Multiplicity="0..1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -758,7 +758,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ScheduleS__Staff__74AE54BC">
+        <Association Name="FK__ScheduleS__Staff__70DDC3D8">
           <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
           <End Role="ScheduleStaff" Type="Self.ScheduleStaff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -770,7 +770,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Staff__UserCrede__6FE99F9F">
+        <Association Name="FK__Staff__UserCrede__6C190EBB">
           <End Role="UserCredentials" Type="Self.UserCredential" Multiplicity="1" />
           <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
@@ -794,7 +794,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CarRepairEntities5" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CarRepairEntities6" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cars" EntityType="Self.Car" />
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Marks" EntityType="Self.Mark" />
@@ -843,31 +843,31 @@
             <End Role="STO" EntitySet="STOes" />
             <End Role="OrderCar" EntitySet="OrderCars" />
           </AssociationSet>
-          <AssociationSet Name="FK__RepeatHis__Order__778AC167" Association="Self.FK__RepeatHis__Order__778AC167">
+          <AssociationSet Name="FK__RepeatHis__Order__73BA3083" Association="Self.FK__RepeatHis__Order__73BA3083">
             <End Role="OrderCar" EntitySet="OrderCars" />
             <End Role="RepeatHistory" EntitySet="RepeatHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleS__Order__73BA3083" Association="Self.FK__ScheduleS__Order__73BA3083">
+          <AssociationSet Name="FK__ScheduleS__Order__6FE99F9F" Association="Self.FK__ScheduleS__Order__6FE99F9F">
             <End Role="OrderCar" EntitySet="OrderCars" />
             <End Role="ScheduleStaff" EntitySet="ScheduleStaffs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__Qualifica__70DDC3D8" Association="Self.FK__Staff__Qualifica__70DDC3D8">
+          <AssociationSet Name="FK__Staff__Qualifica__6D0D32F4" Association="Self.FK__Staff__Qualifica__6D0D32F4">
             <End Role="Qualification" EntitySet="Qualifications" />
             <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
-          <AssociationSet Name="FK__RepeatHis__Staff__787EE5A0" Association="Self.FK__RepeatHis__Staff__787EE5A0">
+          <AssociationSet Name="FK__RepeatHis__Staff__74AE54BC" Association="Self.FK__RepeatHis__Staff__74AE54BC">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="RepeatHistory" EntitySet="RepeatHistories" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__Role_ID__6EF57B66" Association="Self.FK__Staff__Role_ID__6EF57B66">
+          <AssociationSet Name="FK__Staff__Role_ID__6B24EA82" Association="Self.FK__Staff__Role_ID__6B24EA82">
             <End Role="RoleStaff" EntitySet="RoleStaffs" />
             <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
-          <AssociationSet Name="FK__ScheduleS__Staff__74AE54BC" Association="Self.FK__ScheduleS__Staff__74AE54BC">
+          <AssociationSet Name="FK__ScheduleS__Staff__70DDC3D8" Association="Self.FK__ScheduleS__Staff__70DDC3D8">
             <End Role="Staff" EntitySet="Staffs" />
             <End Role="ScheduleStaff" EntitySet="ScheduleStaffs" />
           </AssociationSet>
-          <AssociationSet Name="FK__Staff__UserCrede__6FE99F9F" Association="Self.FK__Staff__UserCrede__6FE99F9F">
+          <AssociationSet Name="FK__Staff__UserCrede__6C190EBB" Association="Self.FK__Staff__UserCrede__6C190EBB">
             <End Role="UserCredentials" EntitySet="UserCredentials" />
             <End Role="Staff" EntitySet="Staffs" />
           </AssociationSet>
@@ -881,7 +881,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище CarRepairModelContainer" CdmEntityContainer="CarRepairEntities5">
+        <EntityContainerMapping StorageEntityContainer="Хранилище CarRepairModelContainer" CdmEntityContainer="CarRepairEntities6">
           <EntitySetMapping Name="Cars">
             <EntityTypeMapping TypeName="CarRepairModel.Car">
               <MappingFragment StoreEntitySet="Car">

@@ -17,13 +17,17 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+
+            <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button Content="Выйти"  Margin="10,0,0,6" VerticalAlignment="Bottom"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="25" Width="115" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Click="Button_Click"/>
-        <Button Content="Заказы"  Margin="181,67,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" Click="Button_Click_1"/>
-        <Button Content="Клиенты (юр лица)" Margin="181,68,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Click="Button_Click_3"/>
-        <Button Content="Клиенты (физ лица)"  Margin="10,67,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" Click="Button_Click_2"/>
-        <Button Content="Расписания сотрудников" Margin="10,68,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Click="Button_Click_4"/>
-        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" Width="800" Height="47" TextAlignment="Center" TextWrapping="Wrap" FontSize="36" Margin="0,51,0,0"><Run Language="ru-ru" Text="Бухгалтер"/></TextBlock>
+        <Button Content="Выйти"  Margin="10,0,0,10" VerticalAlignment="Bottom"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="25" Width="115" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Left" Click="Button_Click"/>
+        <Button Content="Заказы"  Margin="181,46,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="1" Click="Button_Click_1"/>
+        <Button Content="Клиенты (юр лица)" Margin="181,45,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Click="Button_Click_3"/>
+        <Button Content="Клиенты (физ лица)"  Margin="10,46,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" Click="Button_Click_2"/>
+        <Button Content="Расписания сотрудников" Margin="10,45,0,0" VerticalAlignment="Top"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Click="Button_Click_4"/>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="0" Grid.ColumnSpan="2" Width="800" Height="47" TextAlignment="Center" TextWrapping="Wrap" FontSize="36" Margin="0,29,0,0"><Run Language="ru-ru" Text="Бухгалтер"/></TextBlock>
+        <Button Content="Отчёты"  Margin="181,0,0,10"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" x:Name="Reports" Click="Reports_Click"/>
+        <Button Content="Запчасти"  Margin="10,0,0,10" VerticalAlignment="Bottom"  materialDesignMahApps:ButtonAssist.CornerRadius="0,0,0,0" Height="31" Width="209" Grid.Column="1" HorizontalAlignment="Left" x:Name="PartsBut" Click="PartsBut_Click" Grid.Row="3"/>
     </Grid>
 </Window>

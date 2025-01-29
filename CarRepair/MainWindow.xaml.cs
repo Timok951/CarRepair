@@ -21,7 +21,7 @@ namespace CarRepair
     {
 
 
-        private CarRepairEntities5 context = new CarRepairEntities5();
+        private CarRepairEntities6 context = new CarRepairEntities6();
 
         public MainWindow()
         {
@@ -33,67 +33,72 @@ namespace CarRepair
 
         private void EnterButton_Click(object sender, RoutedEventArgs e)
         {
-            var user = context.UserCredentials.FirstOrDefault(a => a.LoginUser == LoginTextBox.Text && a.PasswordUser == PasswordTextBox.Password);
-
-            if (user != null)
+            try
             {
-                var staff = user.Staffs.FirstOrDefault();
-                if (staff != null)
+                var user = context.UserCredentials.FirstOrDefault(a => a.LoginUser == LoginTextBox.Text && a.PasswordUser == PasswordTextBox.Password);
+
+                if (user != null)
                 {
-                    var roleID = staff.Role_ID;
-
-                    switch (roleID)
+                    var staff = user.Staffs.FirstOrDefault();
+                    if (staff != null)
                     {
-                        case 1:
-                            MainAdmin admin = new MainAdmin();
-                            admin.Show();
-                            GlobalVariables.RoleUser = Convert.ToInt32(roleID);
+                        var roleID = staff.Role_ID;
 
-                            this.Close();
+                        switch (roleID)
+                        {
+                            case 1:
+                                MainAdmin admin = new MainAdmin();
+                                admin.Show();
+                                GlobalVariables.RoleUser = Convert.ToInt32(roleID);
 
-                            break;
-                        case 2:
-                            MasterConsultMain consult = new MasterConsultMain();
-                            consult.Show();
-                            GlobalVariables.RoleUser = Convert.ToInt32(roleID);
+                                this.Close();
 
-                            this.Close();
+                                break;
+                            case 2:
+                                MasterConsultMain consult = new MasterConsultMain();
+                                consult.Show();
+                                GlobalVariables.RoleUser = Convert.ToInt32(roleID);
 
-                            break;
+                                this.Close();
 
-                        case 3:
-                            СarMechanicianMain carmech = new СarMechanicianMain();
-                            carmech.Show();
-                            GlobalVariables.RoleUser = Convert.ToInt32(roleID);
+                                break;
 
-                            this.Close();
+                            case 3:
+                                СarMechanicianMain carmech = new СarMechanicianMain();
+                                carmech.Show();
+                                GlobalVariables.RoleUser = Convert.ToInt32(roleID);
 
-                            break;
-                        case 4:
-                            AcountantMain accauntant = new AcountantMain();
-                            accauntant.Show();
-                            GlobalVariables.RoleUser = Convert.ToInt32(roleID);
+                                this.Close();
 
-                            this.Close();
+                                break;
+                            case 4:
+                                AcountantMain accauntant = new AcountantMain();
+                                accauntant.Show();
+                                GlobalVariables.RoleUser = Convert.ToInt32(roleID);
 
-                            break;
+                                this.Close();
+
+                                break;
 
 
 
 
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Проверьте данные");
+                    }
+
+
                 }
                 else
                 {
                     MessageBox.Show("Проверьте данные");
                 }
+            }catch
+            { MessageBox.Show("ошибка входа"); }
 
-
-            }
-            else
-            {
-                MessageBox.Show("Проверьте данные");
-            }
 
         }
 

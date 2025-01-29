@@ -99,7 +99,7 @@ namespace CarRepair
 
         BasicButtons basicButtons = new BasicButtons();
 
-        private CarRepairEntities5 context = new CarRepairEntities5();
+        private CarRepairEntities6 context = new CarRepairEntities6();
         private readonly ReportService _reportService;
         private readonly SparePartsService _sparePartsService;
         public Reports()
@@ -191,7 +191,7 @@ namespace CarRepair
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (var context = new CarRepairEntities5())
+            using (var context = new CarRepairEntities6())
             {
                 // Определяем самую популярную работу
                 var mostPopularWork = context.OrderCars

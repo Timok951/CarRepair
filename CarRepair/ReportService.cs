@@ -4,9 +4,9 @@ using System.Linq;
 
 public class ReportService
 {
-    private readonly CarRepairEntities5 _context;
+    private readonly CarRepairEntities6 _context;
 
-    public ReportService(CarRepairEntities5 context)
+    public ReportService(CarRepairEntities6 context)
     {
         _context = context;
     }

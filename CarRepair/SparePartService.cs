@@ -8,9 +8,9 @@ namespace CarRepair
 {
     public class SparePartsService
     {
-        private readonly CarRepairEntities5 _context;
+        private readonly CarRepairEntities6 _context;
 
-        public SparePartsService(CarRepairEntities5 context)
+        public SparePartsService(CarRepairEntities6 context)
         {
             _context = context;
         }

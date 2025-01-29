@@ -13,10 +13,10 @@ namespace CarRepair
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CarRepairEntities5 : DbContext
+    public partial class CarRepairEntities6 : DbContext
     {
-        public CarRepairEntities5()
-            : base("name=CarRepairEntities5")
+        public CarRepairEntities6()
+            : base("name=CarRepairEntities6")
         {
         }
     

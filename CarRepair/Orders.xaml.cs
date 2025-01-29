@@ -85,7 +85,7 @@ namespace CarRepair
             return double.TryParse(text, out _);
         }
 
-        private CarRepairEntities5 context = new CarRepairEntities5();
+        private CarRepairEntities6 context = new CarRepairEntities6();
 
         public Orders()
         {
